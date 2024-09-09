@@ -7,8 +7,7 @@ public class Main {
         System.out.println("Ezra Goldenberg is here");
         System.out.println("Shoeb Sadi is here");
         System.out.println("Dylan Parchman is here");
-
-
+        System.out.println("Gabriel Solano is here.");
         /*
         Scanner myObj = new Scanner(System.in);  // Create a Scanner object
         boolean stillAsk = true;
