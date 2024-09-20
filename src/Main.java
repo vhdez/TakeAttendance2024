@@ -1,40 +1,23 @@
 import java.util.Scanner;
 
-public class Main {
+class Main {
     public static void main(String[] args) {
         System.out.println("Hi class!");
 
-        Student student1 = new Student();
-        student1.firstName = "Twyla";
-        student1.lastName = "Nunes-Ueno";
-        student1.id = 10107967;
-        student1.graduationYear = 2025;
+        Student student1 = new Student("Twyla", "Nunes-Ueno", 10107967, 2025, 1234567890 );
+        Student student2 = new Student("Royde'sha", "Richardson", 8485432, 2025);
+        Student student3 = new Student("Shoeb", "Sadi", 8661668, 2026);
+        Student student4 = new Student("Gabriel", "Solano",8283452,2025);
+        Student student5 = new Student("Dylan","Parchman",0,0);
 
-        Student student2 = new Student();
-        student2.firstName = "Royde'sha";
-        student2.lastName = "Richardson";
-        student2.id = 8485432;
-        student2.graduationYear = 2025;
+        Teacher teacher1 = new Teacher("Mr. Reddy");
+        Teacher teacher2 = new Teacher("Mr. Hernandez", student2,student1);
+        teacher2.takeAttendance();
+        teacher2.goShopping();
 
-        Student student3 = new Student();
-        student3.firstName = "Shoeb";
-        student3.lastName = "Sadi";
-        student3.id = 8661668;
-        student3.graduationYear = 2026;
+        teacher1.collectFees(student1);
 
-        Student student4 = new Student();
-        student4.firstName = "Gabriel";
-        student4.lastName = "Solano";
-        student4.id = 8283452;
-        student4.graduationYear = 2025;
-
-        Student student5 = new Student();
-        student5.firstName = "Dylan";
-        student5.lastName = "Parchman";
-        student5.id = 0;
-        student5.graduationYear = 0;
-
-        Scanner myTextScanner = new Scanner(System.in);  // Create a Scanner object
+                Scanner myTextScanner = new Scanner(System.in);  // Create a Scanner object
         boolean stillAsk = true;
         while (stillAsk) {
             System.out.println("");
@@ -64,12 +47,13 @@ public class Main {
                 System.out.println("You are unknown, " + nameTyped + "!  NOT marked PRESENT!");
             } else {
                 boolean idMatches = studentFound.checkID(myTextScanner);
-                studentFound.describe();
                 if (idMatches) {
+                    studentFound.markPresent();
                     System.out.println("Marking this student PRESENT!");
                 } else {
                     System.out.println("NOT Marking this student PRESENT!");
                 }
+                studentFound.describe();
             }
         }
     }
