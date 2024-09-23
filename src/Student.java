@@ -13,7 +13,6 @@ class Student {
     private int creditCardNumber;
 
     // Constructors
-
     public Student(String firstName, String lastName, int id, int graduationYear, int creditCardNumber) {
         this.firstName = firstName;
         this.lastName = lastName;

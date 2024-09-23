@@ -29,7 +29,6 @@ public class Teacher {
     }
 
     // Getters/Setters
-
     public String getName() {
         return name;
     }
