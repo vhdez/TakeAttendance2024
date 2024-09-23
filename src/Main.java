@@ -8,14 +8,19 @@ class Main {
 
         Student student1 = new Student("Twyla", "Nunes-Ueno", 10107967, 2025, 1234567890 );
         Student student2 = new Student("Royde'sha", "Richardson", 8485432, 2025);
-        Student student3 = new Student("Shoeb", "Sadi", 8661668, 2026);
-        Student student4 = new Student("Gabriel", "Solano",8283452,2025);
-        Student student5 = new Student("Dylan","Parchman",0,0);
 
         Teacher teacher1 = new Teacher("Mr. Reddy");
         System.out.println(teacher1);
-        Teacher teacher2 = new Teacher("Mr. Hernandez", student1, student2, student3, student4, student5);
+        Teacher teacher2 = new Teacher("Mr. Hernandez", student1, student2);
+        Student student3 = new Student("Shoeb", "Sadi", 8661668, 2026);
+        Student student4 = new Student("Gabriel", "Solano",8283452,2025);
+        Student student5 = new Student("Dylan","Parchman",0,0);
+        teacher2.addStudent(student3);
+        teacher2.addStudent(student4);
+        teacher2.addStudent(student5);
         System.out.println(teacher2);
+
+        teacher2.getStudent(3).describe();
 
         teacher2.goShopping();
         teacher1.collectFees(student1);

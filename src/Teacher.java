@@ -56,8 +56,7 @@ public class Teacher {
             if (!student.isPresent()) {
                 studentsAbsent = studentsAbsent + 1;
             }
-        };
-
+        }
         if (studentsAbsent > 0) {
             System.out.println("Teacher " + name + " has " + studentsAbsent + " students absent.");
         } else {
