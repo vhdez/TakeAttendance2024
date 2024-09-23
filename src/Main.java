@@ -24,7 +24,7 @@ class Main {
         Scanner myTextScanner = new Scanner(System.in);  // Create a Scanner object
         boolean stillAsk = true;
         while (stillAsk) {
-            System.out.print("Type your name to be mark present: ");
+            System.out.print("Taking attendance.  Type your name: ");
             String nameTyped = myTextScanner.nextLine();  // Read user input
 
             Student studentSigningIn = teacher2.findStudent(nameTyped);
