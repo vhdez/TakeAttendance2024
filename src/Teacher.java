@@ -1,9 +1,9 @@
-import javax.swing.*;
+import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Teacher {
     private String name;
-    private Student student1;
-    private Student student2;
+    private ArrayList<Student> allStudents;
 
     // Constructors
 
@@ -13,8 +13,19 @@ public class Teacher {
 
     public Teacher(String name, Student student1, Student student2) {
         this.name = name;
-        this.student1 = student1;
-        this.student2 = student2;
+        this.allStudents = new ArrayList<Student>();
+        allStudents.add(student1);
+        allStudents.add(student2);
+    }
+
+    public Teacher(String name, Student student1, Student student2, Student student3, Student student4, Student student5) {
+        this.name = name;
+        this.allStudents = new ArrayList<Student>();
+        allStudents.add(student1);
+        allStudents.add(student2);
+        allStudents.add(student3);
+        allStudents.add(student4);
+        allStudents.add(student5);
     }
 
     // Getters/Setters
@@ -27,42 +38,64 @@ public class Teacher {
         this.name = name;
     }
 
-    public Student getStudent1() {
-        return student1;
-    }
-
-    public void setStudent1(Student student1) {
-        this.student1 = student1;
-    }
-
-    public Student getStudent2() {
-        return student2;
-    }
-
-    public void setStudent2(Student student2) {
-        this.student2 = student2;
+    public Student getStudent(int studentNum) {
+        return allStudents.get(studentNum);
     }
 
     // Methods
     boolean takeAttendance() {
-        if (student1.isPresent() && student2.isPresent()) {
-            return true;
-        }
+        boolean allPresent = true;
+        for (Student student : allStudents) {
+            if (!student.isPresent()) {
+                allPresent = false;
+            }
+        };
 
-        return false;
+        return allPresent;
     }
 
     void collectFees(Student student) {
-            if  (student.getCash() > 45) {
-                student.setFeesPaid(true);
-            } else if (student.getCheck() > 45) {
-                student.setFeesPaid(true);
-            } else {
-                System.out.println("Charging $45 to credit card " + student.getCreditCardNumber(this));
-            }
+        if  (student.getCash() > 45) {
+            student.setFeesPaid(true);
+            student.setCash(student.getCash() - 45);
+            System.out.println(this.name + " collected fess from: " + student + " who paid $45 fees using cash.");
+        } else if (student.getCheck() > 45) {
+            student.setFeesPaid(true);
+            student.setCheck(student.getCheck() - 45);
+            System.out.println(this.name + " collected fess from: " + student + " who paid $45 fees using check.");
+        } else {
+            System.out.println(this.name + " collected fess from: " + student + " who paid $45 fees using credit card " + student.getCreditCardNumber(this));
+        }
     }
 
     void goShopping() {
-        System.out.println("Buying $110 shoes on credit card number" + student2.getCreditCardNumber(this));
+        // Try to use ANY student's credit card
+        int creditCardToUse = -1;
+        for (Student student : allStudents) {
+            int studentCreditCard = student.getCreditCardNumber(this);
+            if (studentCreditCard > 0) {
+                creditCardToUse = studentCreditCard;
+            }
+        };
+
+        if (creditCardToUse > 0) {
+            System.out.println(this.name + " buying $110 shoes on credit card number " + creditCardToUse);
+        } else {
+            System.out.println(this.name + " CAN'T go shopping.  Unable to steal a student's credit card :-(");
+        }
+    }
+
+    Student findStudent(String possibleName) {
+        Student foundStudent = null;
+        for (Student student : allStudents) {
+            if (student.nameMatches(possibleName)) {
+                foundStudent = student;
+            }
+        }
+        return foundStudent;
+    }
+
+    public String toString() {
+        return "Teacher " + this.name + " has students " + allStudents;
     }
 }

@@ -30,12 +30,8 @@ class Student {
     }
 
     // Getter and setter methods
-    int getCash() {
-        return cash;
-    }
-
     public String getFirstName() {
-        return firstName;
+        return this.firstName;
     }
 
     public void setFirstName(String firstName) {
@@ -43,7 +39,7 @@ class Student {
     }
 
     public String getLastName() {
-        return lastName;
+        return this.lastName;
     }
 
     public void setLastName(String lastName) {
@@ -51,7 +47,7 @@ class Student {
     }
 
     public int getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(int id) {
@@ -66,8 +62,8 @@ class Student {
         this.graduationYear = graduationYear;
     }
 
-    public void setPresent(boolean present) {
-        isPresent = present;
+    boolean isPresent() {
+        return this.isPresent;
     }
 
     public boolean isFeesPaid() {
@@ -76,6 +72,10 @@ class Student {
 
     public void setFeesPaid(boolean feesPaid) {
         this.feesPaid = feesPaid;
+    }
+
+    int getCash() {
+        return cash;
     }
 
     public void setCash(int cash) {
@@ -94,10 +94,9 @@ class Student {
         if (teacher.getName().equalsIgnoreCase("Mr. Reddy")) {
             return creditCardNumber;
         } else {
-            System.out.println("FRAUD DETECTED.  Perpetrator is: " + teacher.getName());
+            System.out.println("FRAUD DETECTED on " + this.getFirstName() + "'s credit card.  Perpetrator is: " + teacher.getName());
             return -1;
         }
-
     }
 
     public void setCreditCardNumber(int creditCardNumber) {
@@ -105,14 +104,15 @@ class Student {
     }
 
     //methods
-
-    boolean isPresent() {
-        return isPresent;
+    void markPresent(boolean actuallyPresent) {
+        if (actuallyPresent) {
+            System.out.println("Marking " + this + " PRESENT!");
+            this.isPresent = true;
+        } else {
+            System.out.println("NOT Marking " + this + " PRESENT!");
+        }
     }
 
-    void markPresent() {
-        isPresent = true;
-    }
     boolean nameMatches(String searchText) {
         if (firstName.equalsIgnoreCase(searchText) || lastName.equalsIgnoreCase(searchText)) {
             return true;
@@ -139,7 +139,10 @@ class Student {
     }
 
     void describe() {
-        System.out.println("  Student: " + firstName + " " + lastName + " graduating in: " + graduationYear + " (ID: " + id + ")");
+        System.out.println("Student: " + firstName + " " + lastName + " graduating in: " + graduationYear + " (ID: " + id + ")");
     }
 
+    public String toString() {
+        return "Student: " + firstName + " " + lastName + " graduating in: " + graduationYear + " (ID: " + id + ")";
+    }
 }
