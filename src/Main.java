@@ -13,9 +13,8 @@ class Main {
         Student student5 = new Student("Dylan","Parchman",0,0);
 
         Teacher teacher1 = new Teacher("Mr. Reddy");
-        Teacher teacher2 = new Teacher("Mr. Hernandez", student1, student2, student3, student4, student5);
-
         System.out.println(teacher1);
+        Teacher teacher2 = new Teacher("Mr. Hernandez", student1, student2, student3, student4, student5);
         System.out.println(teacher2);
 
         teacher2.goShopping();
@@ -39,6 +38,7 @@ class Main {
                 stillAsk = false;
             }
         }
+        teacher2.takeAttendance();
     }
 
 }

@@ -37,20 +37,32 @@ public class Teacher {
         this.name = name;
     }
 
+    public void addStudent(Student student) {
+        allStudents.add(student);
+    }
+
     public Student getStudent(int studentNum) {
         return allStudents.get(studentNum);
     }
 
+    public void forgetStudent(Student student) {
+        allStudents.remove(student);
+    }
+
     // Methods
-    boolean takeAttendance() {
-        boolean allPresent = true;
+    void takeAttendance() {
+        int studentsAbsent = 0;
         for (Student student : allStudents) {
             if (!student.isPresent()) {
-                allPresent = false;
+                studentsAbsent = studentsAbsent + 1;
             }
         };
 
-        return allPresent;
+        if (studentsAbsent > 0) {
+            System.out.println("Teacher " + name + " has " + studentsAbsent + " students absent.");
+        } else {
+            System.out.println("Teacher " + name + " has NO students absent.");
+        }
     }
 
     void collectFees(Student student) {
